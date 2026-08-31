@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 from urllib.parse import unquote
 
+import yaml
 from jsonschema import Draft202012Validator, FormatChecker
 
 
@@ -185,6 +186,23 @@ class RepositoryValidation(unittest.TestCase):
                     failures.append(f"{markdown.relative_to(ROOT)} -> {target}")
 
         self.assertEqual([], failures)
+
+    def test_codex_skill_metadata_is_valid(self) -> None:
+        skill_dir = ROOT / "skills" / "agent-teamworks"
+        skill_text = (skill_dir / "SKILL.md").read_text(encoding="utf-8")
+        parts = skill_text.split("---", 2)
+        self.assertEqual(len(parts), 3)
+        frontmatter = yaml.safe_load(parts[1])
+        self.assertEqual(frontmatter["name"], "agent-teamworks")
+        self.assertIn("persistent multi-agent team", frontmatter["description"])
+
+        openai = yaml.safe_load(
+            (skill_dir / "agents" / "openai.yaml").read_text(encoding="utf-8")
+        )
+        interface = openai["interface"]
+        self.assertEqual(interface["display_name"], "Agent Teamworks")
+        self.assertIn("$agent-teamworks", interface["default_prompt"])
+        self.assertLessEqual(len(interface["short_description"]), 64)
 
     def test_public_example_contains_no_private_project_markers(self) -> None:
         forbidden = [
