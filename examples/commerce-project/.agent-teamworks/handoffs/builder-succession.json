@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.1.0",
+  "handoff_id": "builder-succession",
+  "team_id": "commerce-demo-team",
+  "type": "role_succession",
+  "from_role_id": "prototype-builder",
+  "to_role_id": "prototype-builder",
+  "from_generation": 1,
+  "to_generation": 2,
+  "from_agent_ref": "builder-agent-1",
+  "to_agent_ref": "builder-agent-2",
+  "status": "completed",
+  "reason": "The original runtime ended before owner acceptance, while the builder responsibility remains active.",
+  "context_snapshot": [
+    ".agent-teamworks/work-items/editing-flow.json",
+    ".agent-teamworks/decisions/separate-review-verification.json"
+  ],
+  "completed_outputs": [
+    "Fictional catalog editor implementation",
+    "Focused engineering verification"
+  ],
+  "open_items": [
+    "editing-flow"
+  ],
+  "decisions": [
+    "separate-review-verification"
+  ],
+  "evidence": [
+    "The successor acknowledged the pending owner-acceptance obligation."
+  ],
+  "destination_acknowledged": true,
+  "prepared_at": "2026-09-01T00:42:00Z",
+  "completed_at": "2026-09-01T00:45:00Z"
+}

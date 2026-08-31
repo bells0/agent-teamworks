@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.1.0",
+  "decision_id": "separate-review-verification",
+  "team_id": "commerce-demo-team",
+  "title": "Keep experience review and workflow verification separate",
+  "status": "approved",
+  "authority_ref": "project-owner",
+  "context": "The editing outcome needs both requirement critique and observable path verification.",
+  "choice": "Use one read-only experience reviewer role and one workflow verifier role.",
+  "rationale": "The responsibilities recur and produce different evidence, while user acceptance remains owner-controlled.",
+  "evidence": [
+    "The work graph contains a recurring editing workflow and a separate acceptance path."
+  ],
+  "affects": [
+    "experience-reviewer",
+    "verifier",
+    "editing-flow"
+  ],
+  "supersedes": null,
+  "created_at": "2026-09-01T00:08:00Z",
+  "decided_at": "2026-09-01T00:10:00Z"
+}

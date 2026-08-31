@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.1.0",
+  "work_item_id": "catalog-foundation",
+  "team_id": "commerce-demo-team",
+  "title": "Define the catalog foundation",
+  "outcome": "The editing workflow consumes one accepted catalog concept and contract.",
+  "status": "done",
+  "owner_role_id": "catalog-architect",
+  "supporting_role_ids": [
+    "prototype-builder"
+  ],
+  "dependencies": [],
+  "acceptance": {
+    "engineering": "passed",
+    "user": "accepted"
+  },
+  "evidence": [
+    {
+      "claim": "The contract represents the agreed fictional catalog example.",
+      "artifact": "Owner-reviewed example contract",
+      "result": "pass"
+    }
+  ],
+  "created_at": "2026-09-01T00:15:00Z",
+  "updated_at": "2026-09-01T00:30:00Z"
+}

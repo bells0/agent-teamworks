@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/bells0/agent-teamworks/main/schemas/team.schema.json",
+  "title": "Agent Teamworks Team",
+  "description": "A durable project-level multi-agent team.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "team_id",
+    "project",
+    "mission",
+    "status",
+    "coordinator_role_id",
+    "role_ids",
+    "authority",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "team_id": { "$ref": "#/$defs/id" },
+    "project": { "type": "string", "minLength": 1 },
+    "mission": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": ["forming", "active", "paused", "dissolved"]
+    },
+    "coordinator_role_id": { "$ref": "#/$defs/id" },
+    "role_ids": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/id" },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["owner", "agent_scope", "requires_approval"],
+      "properties": {
+        "owner": { "type": "string", "minLength": 1 },
+        "agent_scope": { "type": "string", "minLength": 1 },
+        "requires_approval": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{2,63}$"
+    }
+  }
+}
