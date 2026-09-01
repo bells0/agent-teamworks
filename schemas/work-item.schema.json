@@ -21,7 +21,7 @@
     "updated_at"
   ],
   "properties": {
-    "schema_version": { "const": "0.1.0" },
+    "schema_version": { "const": "0.2.0" },
     "work_item_id": { "$ref": "#/$defs/id" },
     "team_id": { "$ref": "#/$defs/id" },
     "title": { "type": "string", "minLength": 1 },
@@ -32,9 +32,10 @@
         "backlog",
         "ready",
         "in_progress",
-        "review",
-        "verification",
-        "user_acceptance",
+        "product_acceptance",
+        "technical_review",
+        "delivery_review",
+        "merge_authorization",
         "blocked",
         "done",
         "cancelled"
@@ -54,15 +55,32 @@
     "acceptance": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["engineering", "user"],
+      "required": [
+        "product_experience",
+        "technical_review",
+        "delivery_readiness",
+        "merge_authorization"
+      ],
       "properties": {
-        "engineering": {
+        "product_experience": {
           "type": "string",
-          "enum": ["not_required", "pending", "passed", "failed"]
-        },
-        "user": {
-          "type": "string",
+          "description": "Final product experience decision by the user or designated acceptance owner.",
           "enum": ["not_required", "pending", "accepted", "rejected"]
+        },
+        "technical_review": {
+          "type": "string",
+          "description": "Independent technical verdict for the final candidate HEAD.",
+          "enum": ["not_required", "pending", "pass", "needs_fix"]
+        },
+        "delivery_readiness": {
+          "type": "string",
+          "description": "Independent delivery verdict for scope, risk, rollback, checks, and PR readiness.",
+          "enum": ["not_required", "pending", "merge_ready", "needs_fix"]
+        },
+        "merge_authorization": {
+          "type": "string",
+          "description": "Merge authority state under the project's permission rules.",
+          "enum": ["not_required", "pending", "authorized", "denied"]
         }
       }
     },

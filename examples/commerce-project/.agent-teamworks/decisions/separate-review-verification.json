@@ -2,12 +2,12 @@
   "schema_version": "0.1.0",
   "decision_id": "separate-review-verification",
   "team_id": "commerce-demo-team",
-  "title": "Keep experience review and workflow verification separate",
+  "title": "Keep product advice and technical verification separate",
   "status": "approved",
   "authority_ref": "project-owner",
-  "context": "The editing outcome needs both requirement critique and observable path verification.",
-  "choice": "Use one read-only experience reviewer role and one workflow verifier role.",
-  "rationale": "The responsibilities recur and produce different evidence, while user acceptance remains owner-controlled.",
+  "context": "The editing outcome needs both fallback product advice and observable technical and delivery evidence.",
+  "choice": "Use one read-only product review advisor role and one workflow verifier role.",
+  "rationale": "The responsibilities recur and produce different evidence, while product experience acceptance and merge authorization remain separately controlled.",
   "evidence": [
     "The work graph contains a recurring editing workflow and a separate acceptance path."
   ],

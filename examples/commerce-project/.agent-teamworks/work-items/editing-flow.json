@@ -1,10 +1,10 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "work_item_id": "editing-flow",
   "team_id": "commerce-demo-team",
   "title": "Deliver the catalog editing flow",
   "outcome": "A user can complete the canonical fictional catalog edit transaction and see the saved result.",
-  "status": "user_acceptance",
+  "status": "product_acceptance",
   "owner_role_id": "prototype-builder",
   "supporting_role_ids": [
     "experience-reviewer",
@@ -14,13 +14,15 @@
     "catalog-foundation"
   ],
   "acceptance": {
-    "engineering": "passed",
-    "user": "pending"
+    "product_experience": "pending",
+    "technical_review": "pending",
+    "delivery_readiness": "pending",
+    "merge_authorization": "pending"
   },
   "evidence": [
     {
-      "claim": "The canonical edit transaction completes in the fictional test path.",
-      "artifact": "Recorded workflow verification",
+      "claim": "The implementer self-check completes the canonical fictional edit transaction.",
+      "artifact": "Recorded implementer self-check",
       "result": "pass"
     }
   ],

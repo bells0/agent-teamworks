@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "work_item_id": "catalog-foundation",
   "team_id": "commerce-demo-team",
   "title": "Define the catalog foundation",
@@ -11,8 +11,10 @@
   ],
   "dependencies": [],
   "acceptance": {
-    "engineering": "passed",
-    "user": "accepted"
+    "product_experience": "accepted",
+    "technical_review": "pass",
+    "delivery_readiness": "not_required",
+    "merge_authorization": "not_required"
   },
   "evidence": [
     {

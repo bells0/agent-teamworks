@@ -113,10 +113,20 @@ class RepositoryValidation(unittest.TestCase):
 
             if item["status"] == "done":
                 self.assertIn(
-                    item["acceptance"]["engineering"], ["passed", "not_required"]
+                    item["acceptance"]["product_experience"],
+                    ["accepted", "not_required"],
                 )
                 self.assertIn(
-                    item["acceptance"]["user"], ["accepted", "not_required"]
+                    item["acceptance"]["technical_review"],
+                    ["pass", "not_required"],
+                )
+                self.assertIn(
+                    item["acceptance"]["delivery_readiness"],
+                    ["merge_ready", "not_required"],
+                )
+                self.assertIn(
+                    item["acceptance"]["merge_authorization"],
+                    ["authorized", "not_required"],
                 )
 
             if item["status"] not in ["backlog", "blocked", "cancelled"]:

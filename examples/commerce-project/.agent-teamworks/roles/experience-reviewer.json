@@ -2,14 +2,14 @@
   "schema_version": "0.1.0",
   "role_id": "experience-reviewer",
   "team_id": "commerce-demo-team",
-  "name": "Experience Reviewer",
-  "purpose": "Review the editing outcome against the accepted workflow without modifying it.",
+  "name": "Product Review Advisor",
+  "purpose": "Offer fallback product advice on the editing workflow without owning product experience acceptance or modifying the outcome.",
   "status": "active",
   "owns": [
-    "independent experience review"
+    "independent product review advice"
   ],
   "can_decide": [
-    "review verdict and finding severity"
+    "advisory finding severity"
   ],
   "must_escalate": [
     "requirement conflicts",

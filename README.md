@@ -46,9 +46,9 @@ The coordinator is the primary integration point and usually the user's main int
 2. Use the [formation protocol](protocols/team-formation.md) to decide whether a team is justified and create the smallest useful roster.
 3. Store project state under `.agent-teamworks/` using the [schemas](schemas/).
 4. Follow [work routing](protocols/work-routing.md) for each new request and [handoff](protocols/handoff.md) whenever an agent binding changes.
-5. Keep [review, engineering verification, and user acceptance](protocols/review-and-acceptance.md) as separate states.
+5. Keep [product experience acceptance, technical review, delivery readiness, and merge authorization](protocols/review-and-acceptance.md) as separate states.
 
-The [fictional commerce example](examples/commerce-project/) demonstrates a five-role team, dependency-based routing, pending user acceptance, and agent succession without exposing any real project state.
+The [fictional commerce example](examples/commerce-project/) demonstrates a five-role team, dependency-based routing, pending product experience acceptance, and agent succession without exposing any real project state.
 
 ## Project structure
 
@@ -85,7 +85,7 @@ The checks validate all schemas, example records, cross-record references, work 
 
 ## Status
 
-V0.1 establishes the operating model, durable records, Codex adapter, and evaluation baseline. It intentionally does not include a hosted runtime, dashboard, or complex CLI. Those should emerge only after repeated project use demonstrates a concrete need.
+V0.2 extends the foundation with separate product experience acceptance, technical review, delivery readiness, and merge authorization gates. [Work Item Schema `0.2.0`](docs/migrations/work-item-0.2.0.md) records those states explicitly; unchanged record schemas retain their own `0.1.0` versions. Agent Teamworks intentionally does not include a hosted runtime, dashboard, or complex CLI. Those should emerge only after repeated project use demonstrates a concrete need.
 
 ## Contributing
 

@@ -46,9 +46,9 @@ flowchart TD
 2. 使用[团队组建协议](protocols/team-formation.md)判断项目是否确实需要多智能体团队，并建立最小可用角色体系。
 3. 根据项目 [Schema](schemas/) 把团队状态保存在 `.agent-teamworks/` 目录中。
 4. 每次收到新任务时遵循[工作路由协议](protocols/work-routing.md)；更换 agent 绑定时遵循[交接协议](protocols/handoff.md)。
-5. 始终把[审查、工程验证和用户验收](protocols/review-and-acceptance.md)作为不同状态管理。
+5. 始终把[产品体验验收、技术评审、交付就绪和合并授权](protocols/review-and-acceptance.md)作为四个独立状态管理。
 
-[虚构电商项目示例](examples/commerce-project/)展示了一个五角色团队、基于依赖关系的工作路由、尚未完成的用户验收，以及在不改变逻辑角色的情况下完成 agent 接续。示例不包含任何真实项目状态。
+[虚构电商项目示例](examples/commerce-project/)展示了一个五角色团队、基于依赖关系的工作路由、尚未完成的产品体验验收，以及在不改变逻辑角色的情况下完成 agent 接续。示例不包含任何真实项目状态。
 
 ## 项目结构
 
@@ -85,7 +85,7 @@ python3 -m venv .venv
 
 ## 当前状态
 
-V0.1 已建立团队运行模型、持久记录、Codex 适配层和评估基线。目前刻意不包含托管运行时、仪表盘或复杂 CLI；这些能力只应在更多真实项目反复使用并证明存在明确需求后再加入。
+V0.2 在既有基础上增加了相互独立的产品体验验收、技术评审、交付就绪和合并授权门槛。[Work Item Schema `0.2.0`](docs/migrations/work-item-0.2.0.md) 会显式记录这些状态；未发生变化的其他记录 Schema 继续保留各自的 `0.1.0` 版本。目前仍刻意不包含托管运行时、仪表盘或复杂 CLI；这些能力只应在更多真实项目反复使用并证明存在明确需求后再加入。
 
 ## 参与贡献
 
