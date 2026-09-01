@@ -20,7 +20,7 @@ Agent Teamworks adds the missing project layer:
 | Identity disappears after the task | Logical roles persist across work items |
 | Context lives mainly in chat history | Team state, decisions, and handoffs are durable records |
 | Work is split to maximize parallelism | Work is split by outcome, dependency, ownership, and evidence |
-| Agent completion may look like project completion | Review, verification, and user acceptance stay distinct |
+| Agent completion may look like project completion | Product acceptance, technical review, delivery readiness, and merge authorization stay distinct |
 
 ## How it works
 
@@ -31,9 +31,12 @@ flowchart TD
     N[New request] --> D[Decompose by outcome and dependency]
     D --> R
     R --> C[Coordinator integrates role outputs]
-    C --> V[Review and verification]
-    V --> A[User or owner acceptance]
-    A -->|next request| N
+    C --> S[Implementer self-check]
+    S --> A[Product experience acceptance when required]
+    A --> V[Independent technical review on final candidate]
+    V --> G[Delivery readiness]
+    G --> U[Merge authorization]
+    U -->|next request| N
     R -->|agent changes| H[Formal handoff]
     H --> R
 ```

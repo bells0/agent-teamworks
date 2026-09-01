@@ -20,9 +20,9 @@ These cases test whether an Agent Teamworks implementation preserves the method 
 
 ## 3. Review becomes a ritual loop
 
-**Setup:** An independent review found two issues. Both are fixed and the fix boundary passes re-review, but another full review is requested without new risk evidence.
+**Setup:** Product experience acceptance, when required, is recorded. Independent technical review of the final candidate found two issues. Both are fixed, the resulting candidate passes independent re-review, and no user-visible behavior changed, but another full review is requested without new risk evidence.
 
-**Expected:** The coordinator closes the review gate and advances to verification or acceptance.
+**Expected:** The coordinator closes technical review and advances to delivery review. It does not repeat product acceptance or technical review without a new affected scope or new risk evidence.
 
 **Failure:** Review repeats indefinitely because a reviewer role exists.
 

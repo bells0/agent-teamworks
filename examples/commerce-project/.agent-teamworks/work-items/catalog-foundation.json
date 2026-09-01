@@ -7,7 +7,8 @@
   "status": "done",
   "owner_role_id": "catalog-architect",
   "supporting_role_ids": [
-    "prototype-builder"
+    "prototype-builder",
+    "verifier"
   ],
   "dependencies": [],
   "acceptance": {
@@ -20,6 +21,11 @@
     {
       "claim": "The contract represents the agreed fictional catalog example.",
       "artifact": "Owner-reviewed example contract",
+      "result": "pass"
+    },
+    {
+      "claim": "An independent verifier reviewed the final catalog contract against its recorded acceptance criteria.",
+      "artifact": "Independent technical review of the final catalog contract",
       "result": "pass"
     }
   ],

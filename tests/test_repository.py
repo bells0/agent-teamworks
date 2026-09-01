@@ -150,6 +150,38 @@ class RepositoryValidation(unittest.TestCase):
         for work_id in work_ids:
             visit(work_id)
 
+    def test_example_technical_pass_has_independent_review_evidence(self) -> None:
+        for work_id, item in self.work_items.items():
+            if item["acceptance"]["technical_review"] != "pass":
+                continue
+
+            evidence_text = " ".join(
+                f'{entry["claim"]} {entry["artifact"]}' for entry in item["evidence"]
+            ).lower()
+            with self.subTest(work_item=work_id):
+                self.assertIn("verifier", item["supporting_role_ids"])
+                self.assertIn("independent", evidence_text)
+
+    def test_v02_surfaces_avoid_legacy_gate_language(self) -> None:
+        surfaces = [
+            ROOT / "README.md",
+            ROOT / "README.zh-CN.md",
+            ROOT / "evals" / "scenarios.md",
+            *sorted(EXAMPLE_ROOT.rglob("*.json")),
+        ]
+        forbidden = [
+            "review, verification, and user acceptance stay distinct",
+            "advances to verification or acceptance",
+            "user acceptance",
+            "owner acceptance",
+            "owner-acceptance",
+            "focused engineering verification",
+        ]
+        contents = "\n".join(
+            path.read_text(encoding="utf-8") for path in surfaces
+        ).lower()
+        self.assertEqual([], [marker for marker in forbidden if marker in contents])
+
     def test_handoffs_preserve_role_continuity(self) -> None:
         for handoff in self.handoffs.values():
             self.assertEqual(handoff["team_id"], self.team["team_id"])
