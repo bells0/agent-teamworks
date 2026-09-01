@@ -16,7 +16,7 @@
     "owner": "project-owner",
     "agent_scope": "Local reversible design, implementation, verification, and delivery mechanics.",
     "requires_approval": [
-      "user acceptance",
+      "product experience acceptance",
       "external publication",
       "repository merge"
     ]

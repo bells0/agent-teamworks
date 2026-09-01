@@ -33,8 +33,10 @@ Stop duplicate active owners. If a predecessor disappears, reconstruct only from
 
 ## Close outcomes and teams
 
-Read [review and acceptance](../../protocols/review-and-acceptance.md) when an outcome needs independent review, technical verification, or user acceptance. Keep those states distinct and use only controls justified by the actual risk.
+Read [review and acceptance](../../protocols/review-and-acceptance.md) when an outcome needs product experience acceptance, independent technical review, delivery review, or merge. Preserve the sequence: runnable candidate and implementer self-check; product acceptance when required; final technical `PASS` or `NEEDS_FIX`; delivery `MERGE_READY` or `NEEDS_FIX`; merge authorization under project rules; permitted merge.
 
-Read [escalation](../../protocols/escalation.md) when authority, ownership, requirements, or evidence is genuinely missing. The framework does not authorize publication, spending, credential use, destructive changes, privacy-sensitive operations, acceptance, or merge.
+Keep product acceptance, technical verdict, delivery readiness, and merge authorization as four independent states. A product review advisor role only advises; record any designated acceptance authority separately. Re-accept only affected user-visible scope after a behavior change; require independent technical re-review for a purely technical fix. Implementers do not approve their own work.
+
+Read [escalation](../../protocols/escalation.md) when authority, ownership, requirements, or evidence is genuinely missing. Project rules define push and merge permissions. Merge requires explicit authorization unless a recorded, narrowly scoped standing authorization applies. The framework does not authorize publication, spending, credential use, destructive changes, privacy-sensitive operations, acceptance, or merge.
 
 Pause or dissolve the team explicitly. Preserve remaining obligations and final acceptance state instead of silently abandoning the roster.

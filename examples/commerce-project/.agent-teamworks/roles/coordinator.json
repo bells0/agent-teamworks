@@ -17,7 +17,7 @@
   ],
   "must_escalate": [
     "mission changes",
-    "user acceptance",
+    "product experience acceptance",
     "repository merge"
   ],
   "continuity": {

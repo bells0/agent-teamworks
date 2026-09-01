@@ -3,18 +3,21 @@
   "role_id": "verifier",
   "team_id": "commerce-demo-team",
   "name": "Workflow Verifier",
-  "purpose": "Exercise observable workflow claims and preserve the boundary between engineering evidence and owner acceptance.",
+  "purpose": "Exercise observable workflow claims and supply independent evidence for technical and delivery verdicts.",
   "status": "active",
   "owns": [
     "real-path verification",
-    "verification evidence"
+    "technical review evidence",
+    "delivery readiness evidence"
   ],
   "can_decide": [
-    "engineering verification result"
+    "technical review verdict",
+    "delivery readiness verdict"
   ],
   "must_escalate": [
     "unavailable acceptance environment",
-    "user acceptance"
+    "product experience acceptance",
+    "merge authorization"
   ],
   "continuity": {
     "context_paths": [

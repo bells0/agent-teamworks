@@ -33,12 +33,16 @@ flowchart LR
     B --> C[Active roster]
     C --> D[Decompose work]
     D --> E[Route to roles]
-    E --> F[Execute and report]
-    F --> G[Review and verify]
-    G --> H{Acceptance state}
-    H -->|more work| D
-    H -->|pause| I[Paused team]
-    H -->|mission complete| J[Dissolved team]
+    E --> F[Execute and self-check]
+    F --> G[Product experience acceptance]
+    G --> H[Technical and delivery review]
+    H --> L{Delivery or merge in scope?}
+    L -->|authorized| M[Permitted delivery or merge]
+    L -->|not required| O[Close outcome]
+    M --> O
+    O -->|more work| D
+    O -->|pause| I[Paused team]
+    O -->|mission complete| J[Dissolved team]
     C -->|agent replacement| K[Formal handoff]
     K --> C
 ```
@@ -67,11 +71,13 @@ Create a new role only when repeated or upcoming work reveals a durable responsi
 
 The coordinator maintains the integrated view. Roles own bounded outcomes, preserve shared state, and return concise status and evidence. A role report is input to integration, not proof that the project is complete.
 
-### 6. Review, verify, and accept
+### 6. Accept, review, and authorize delivery
 
-Review checks the work against its authority and requirements. Verification checks observable claims. User or designated-owner acceptance decides whether the result satisfies the intended workflow.
+For a user-visible outcome, the user or designated acceptance owner first decides whether the runnable candidate satisfies product direction, business semantics, information hierarchy, workflow, and real use. A product review advisor may advise but does not own that decision.
 
-These are separate states. Green technical checks never silently close user acceptance.
+After required product acceptance, the coordinator routes the final candidate HEAD through independent technical and delivery review. Record `PASS` or `NEEDS_FIX` for technical review and `MERGE_READY` or `NEEDS_FIX` for delivery readiness. Merge authorization remains a fourth independent state governed by project permissions.
+
+If accepted user-visible behavior changes, repeat acceptance only for the affected scope. A purely technical fix still requires independent technical re-review. Green checks, product acceptance, `PASS`, and `MERGE_READY` never imply one another or imply merge permission.
 
 ### 7. Preserve continuity
 
@@ -91,8 +97,9 @@ Pause a team when its mission remains valid but active work stops. Dissolve it o
 6. Consequential decisions and state transitions are durable and attributable.
 7. Agent replacement uses handoff; it never creates an unrecorded duplicate owner.
 8. Implementers do not approve their own work.
-9. Verification proves only the claims it observes.
-10. User acceptance is explicit when the outcome affects a user workflow.
+9. Product acceptance, technical `PASS`, `MERGE_READY`, and merge authorization are independent states.
+10. Verification proves only the claims it observes.
+11. Product experience acceptance is explicit when the outcome affects a user workflow.
 
 ## Minimum viable adoption
 

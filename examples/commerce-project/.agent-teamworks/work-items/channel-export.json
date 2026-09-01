@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "work_item_id": "channel-export",
   "team_id": "commerce-demo-team",
   "title": "Prepare a channel export",
@@ -13,8 +13,10 @@
     "editing-flow"
   ],
   "acceptance": {
-    "engineering": "pending",
-    "user": "pending"
+    "product_experience": "pending",
+    "technical_review": "pending",
+    "delivery_readiness": "pending",
+    "merge_authorization": "pending"
   },
   "evidence": [],
   "created_at": "2026-09-01T00:40:00Z",
