@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "work_item_id": "catalog-foundation",
   "team_id": "commerce-demo-team",
   "title": "Define the catalog foundation",
@@ -7,17 +7,25 @@
   "status": "done",
   "owner_role_id": "catalog-architect",
   "supporting_role_ids": [
-    "prototype-builder"
+    "prototype-builder",
+    "verifier"
   ],
   "dependencies": [],
   "acceptance": {
-    "engineering": "passed",
-    "user": "accepted"
+    "product_experience": "accepted",
+    "technical_review": "pass",
+    "delivery_readiness": "not_required",
+    "merge_authorization": "not_required"
   },
   "evidence": [
     {
       "claim": "The contract represents the agreed fictional catalog example.",
       "artifact": "Owner-reviewed example contract",
+      "result": "pass"
+    },
+    {
+      "claim": "An independent verifier reviewed the final catalog contract against its recorded acceptance criteria.",
+      "artifact": "Independent technical review of the final catalog contract",
       "result": "pass"
     }
   ],

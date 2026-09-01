@@ -24,13 +24,11 @@ For each request:
 ## Work-item transitions
 
 ```text
-backlog -> ready -> in_progress -> review -> verification
-                                      |           |
-                                      v           v
-                                   blocked   user_acceptance -> done
+backlog -> ready -> in_progress -> product_acceptance
+  -> technical_review -> delivery_review -> merge_authorization -> done
 ```
 
-`blocked` may be entered from any active state. `cancelled` preserves abandoned work without erasing history. A work item becomes `done` only when its required engineering and acceptance states are satisfied or explicitly marked not required.
+`blocked` may be entered from any active state. `cancelled` preserves abandoned work without erasing history. A gate may be `not_required` when it does not apply, but product acceptance, technical review, delivery readiness, and merge authorization remain separate recorded states. A work item becomes `done` only when every applicable gate and the in-scope merge are complete.
 
 ## Coordinator return contract
 

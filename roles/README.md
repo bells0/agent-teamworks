@@ -25,6 +25,12 @@ Owns intended behavior, domain semantics, outcome priorities, and the distinctio
 
 Use this role when product meaning will recur across work items. It does not own implementation mechanics unless the team explicitly combines those responsibilities.
 
+## Product review advisor — optional
+
+Offers fallback product advice, risks, or alternatives when independent perspective is useful. The advisor role does not own product experience acceptance; any designated acceptance authority must be recorded separately.
+
+Technical evidence or an advisor recommendation never substitutes for the user's or designated acceptance owner's decision about product direction, business semantics, information hierarchy, workflow, and real use.
+
 ## Architect or integrator — optional
 
 Owns shared boundaries, cross-component contracts, dependency order, and integration coherence.
@@ -37,17 +43,17 @@ Owns one stable implementation or artifact boundary and the work items routed to
 
 A builder returns observable output, focused evidence, concerns, and follow-up obligations. It does not approve its own outcome or broaden shared contracts without a decision.
 
-## Reviewer — optional
+## Technical reviewer — optional
 
-Owns independent comparison of an outcome against its requirements, risks, and evidence. It remains read-only for the reviewed boundary and reports location, impact, and required correction.
+Owns independent comparison of the final candidate HEAD against its requirements, diff, functional completeness, failure and regression paths, accessibility, tests, CI, scope, risk, rollback, and delivery evidence. It remains read-only for the reviewed boundary and returns separate technical and delivery verdicts.
 
-Create or activate this role when independent review protects a concrete outcome. Do not use repeated review as a ritual after accepted findings are resolved.
+Create or activate this role when independent review protects a concrete outcome. It returns `PASS` or `NEEDS_FIX` for technical review and `MERGE_READY` or `NEEDS_FIX` for delivery readiness. Do not use repeated review as a ritual after accepted findings are resolved.
 
 ## Verifier or QA — optional
 
-Owns claim-matched observation through the closest available real path. It distinguishes defects from unavailable environments and keeps engineering verification separate from user acceptance.
+Owns claim-matched observation through the closest available real path. It distinguishes defects from unavailable environments and supplies independent evidence for the technical verdict while keeping product acceptance separate.
 
-Use this role when verification is substantial or recurring. The user or designated acceptance owner still decides acceptance where required.
+Use this role when verification is substantial or recurring. The coordinator may combine its evidence with an independent technical review and delivery assessment. The user or designated acceptance owner still decides product acceptance where required.
 
 ## Combining roles
 

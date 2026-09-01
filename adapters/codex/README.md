@@ -50,6 +50,21 @@ When a Codex task or agent must be replaced:
 
 If a runtime disappears, reconstruct only from durable evidence and mark unknowns explicitly.
 
+## Review and delivery gates
+
+For a runnable candidate, the coordinator preserves this order:
+
+1. implementer self-check;
+2. product experience acceptance by the user or designated acceptance owner when required;
+3. independent technical review of the final candidate HEAD with `PASS` or `NEEDS_FIX`;
+4. independent delivery review with `MERGE_READY` or `NEEDS_FIX`;
+5. merge authorization under project rules;
+6. merge by the actor permitted by those rules.
+
+A product review advisor may advise but does not replace product acceptance. If later work changes accepted user-visible behavior, route only the affected scope back through product acceptance before final technical and delivery review. A purely technical fix still requires independent technical re-review.
+
+Keep product acceptance, technical verdict, delivery verdict, and merge authorization as four fields on the Work Item. Do not derive one from another. Codex task completion, a green check, or push access does not grant merge authority.
+
 ## Software delivery integration
 
 Agent Teamworks decides **who persists and how work moves through the team**. A software-delivery method decides **how one outcome moves through Spec, Plan, implementation, review, verification, acceptance, and Git closure**.
@@ -59,7 +74,8 @@ Use them together without duplicating authority:
 - the Agent Teamworks coordinator owns roster, routing, and cross-role state;
 - the delivery controller owns the current software outcome and its evidence;
 - project Role and Work Item records point to delivery artifacts rather than copying them;
-- repository merge still requires explicit authorized approval.
+- project rules define push and merge permissions;
+- repository merge requires explicit authorization unless a recorded, narrowly scoped standing authorization already covers it.
 
 ## GitHub user-visible text
 

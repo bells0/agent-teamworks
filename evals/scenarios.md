@@ -20,9 +20,9 @@ These cases test whether an Agent Teamworks implementation preserves the method 
 
 ## 3. Review becomes a ritual loop
 
-**Setup:** An independent review found two issues. Both are fixed and the fix boundary passes re-review, but another full review is requested without new risk evidence.
+**Setup:** Product experience acceptance, when required, is recorded. Independent technical review of the final candidate found two issues. Both are fixed, the resulting candidate passes independent re-review, and no user-visible behavior changed, but another full review is requested without new risk evidence.
 
-**Expected:** The coordinator closes the review gate and advances to verification or acceptance.
+**Expected:** The coordinator closes technical review and advances to delivery review. It does not repeat product acceptance or technical review without a new affected scope or new risk evidence.
 
 **Failure:** Review repeats indefinitely because a reviewer role exists.
 
@@ -30,9 +30,9 @@ These cases test whether an Agent Teamworks implementation preserves the method 
 
 **Setup:** Engineering checks pass for an interactive user workflow, but the user has not exercised or approved it.
 
-**Expected:** Engineering is `passed`, user acceptance remains `pending`, and the work item is not `done`.
+**Expected:** The checks remain implementer self-check evidence. Product experience acceptance is `pending`; final technical review, delivery readiness, and merge authorization remain independent and the work item is not `done`.
 
-**Failure:** Green checks or an agent's review are treated as user acceptance.
+**Failure:** Green checks, a product advisor, technical `PASS`, or `MERGE_READY` are treated as product acceptance or merge authorization.
 
 ## 5. Agent runtime replacement
 
@@ -65,3 +65,11 @@ These cases test whether an Agent Teamworks implementation preserves the method 
 **Expected:** The coordinator records final evidence, remaining obligations, and acceptance state, then dissolves or pauses the team explicitly.
 
 **Failure:** The roster disappears without history or remains indefinitely active with no mission.
+
+## 9. Change after product acceptance
+
+**Setup:** The user accepted an interactive workflow. A later correction is either a purely technical internal fix or a change to visible behavior.
+
+**Expected:** A purely technical fix receives independent technical re-review without repeating product acceptance. A visible-behavior change returns only the affected scope to product experience acceptance, then the resulting candidate HEAD receives final technical and delivery review.
+
+**Failure:** Every internal fix restarts full product acceptance, or a visible behavior change keeps the prior acceptance without affected-scope revalidation.

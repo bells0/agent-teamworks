@@ -10,14 +10,14 @@
   "from_agent_ref": "builder-agent-1",
   "to_agent_ref": "builder-agent-2",
   "status": "completed",
-  "reason": "The original runtime ended before owner acceptance, while the builder responsibility remains active.",
+  "reason": "The original runtime ended before product experience acceptance, while the builder responsibility remains active.",
   "context_snapshot": [
     ".agent-teamworks/work-items/editing-flow.json",
     ".agent-teamworks/decisions/separate-review-verification.json"
   ],
   "completed_outputs": [
     "Fictional catalog editor implementation",
-    "Focused engineering verification"
+    "Focused implementer self-check evidence"
   ],
   "open_items": [
     "editing-flow"
@@ -26,7 +26,7 @@
     "separate-review-verification"
   ],
   "evidence": [
-    "The successor acknowledged the pending owner-acceptance obligation."
+    "The successor acknowledged the pending product-experience-acceptance obligation."
   ],
   "destination_acknowledged": true,
   "prepared_at": "2026-09-01T00:42:00Z",
