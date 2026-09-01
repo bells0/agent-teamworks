@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.1.0",
+  "role_id": "coordinator",
+  "team_id": "commerce-demo-team",
+  "name": "Delivery Coordinator",
+  "purpose": "Maintain the integrated mission, route work, and return team truth to the project owner.",
+  "status": "active",
+  "owns": [
+    "team roster",
+    "work graph",
+    "integrated status",
+    "acceptance state"
+  ],
+  "can_decide": [
+    "routine routing",
+    "local reversible sequencing"
+  ],
+  "must_escalate": [
+    "mission changes",
+    "user acceptance",
+    "repository merge"
+  ],
+  "continuity": {
+    "context_paths": [
+      ".agent-teamworks/team.json",
+      ".agent-teamworks/work-items/",
+      ".agent-teamworks/decisions/"
+    ]
+  },
+  "binding": {
+    "generation": 1,
+    "state": "active",
+    "agent_ref": "coordinator-agent-1",
+    "predecessor_agent_ref": null,
+    "bound_at": "2026-09-01T00:00:00Z"
+  }
+}

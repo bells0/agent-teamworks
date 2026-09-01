@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.1.0",
+  "work_item_id": "channel-export",
+  "team_id": "commerce-demo-team",
+  "title": "Prepare a channel export",
+  "outcome": "An accepted catalog record can be transformed into one fictional channel payload.",
+  "status": "backlog",
+  "owner_role_id": "catalog-architect",
+  "supporting_role_ids": [
+    "prototype-builder"
+  ],
+  "dependencies": [
+    "editing-flow"
+  ],
+  "acceptance": {
+    "engineering": "pending",
+    "user": "pending"
+  },
+  "evidence": [],
+  "created_at": "2026-09-01T00:40:00Z",
+  "updated_at": "2026-09-01T00:40:00Z"
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.1.0",
+  "team_id": "commerce-demo-team",
+  "project": "Commerce Catalog Demo",
+  "mission": "Deliver a dependable catalog editing workflow and prepare later channel exports.",
+  "status": "active",
+  "coordinator_role_id": "coordinator",
+  "role_ids": [
+    "coordinator",
+    "catalog-architect",
+    "prototype-builder",
+    "experience-reviewer",
+    "verifier"
+  ],
+  "authority": {
+    "owner": "project-owner",
+    "agent_scope": "Local reversible design, implementation, verification, and delivery mechanics.",
+    "requires_approval": [
+      "user acceptance",
+      "external publication",
+      "repository merge"
+    ]
+  },
+  "created_at": "2026-09-01T00:00:00Z",
+  "updated_at": "2026-09-01T01:00:00Z"
+}

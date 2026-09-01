@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.1.0",
+  "role_id": "catalog-architect",
+  "team_id": "commerce-demo-team",
+  "name": "Catalog Architect",
+  "purpose": "Own catalog semantics and stable contracts shared by editing and export work.",
+  "status": "active",
+  "owns": [
+    "catalog concepts",
+    "shared data contracts"
+  ],
+  "can_decide": [
+    "compatible local contract details"
+  ],
+  "must_escalate": [
+    "product meaning changes",
+    "breaking contract changes"
+  ],
+  "continuity": {
+    "context_paths": [
+      ".agent-teamworks/decisions/",
+      ".agent-teamworks/work-items/catalog-foundation.json"
+    ]
+  },
+  "binding": {
+    "generation": 1,
+    "state": "active",
+    "agent_ref": "architect-agent-1",
+    "predecessor_agent_ref": null,
+    "bound_at": "2026-09-01T00:05:00Z"
+  }
+}

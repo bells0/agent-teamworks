@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Teamworks"
+  short_description: "Run persistent multi-agent teams across real projects"
+  default_prompt: "Use $agent-teamworks to form and operate a persistent project team for this work."

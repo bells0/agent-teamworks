@@ -1,0 +1,31 @@
+{
+  "schema_version": "0.1.0",
+  "role_id": "experience-reviewer",
+  "team_id": "commerce-demo-team",
+  "name": "Experience Reviewer",
+  "purpose": "Review the editing outcome against the accepted workflow without modifying it.",
+  "status": "active",
+  "owns": [
+    "independent experience review"
+  ],
+  "can_decide": [
+    "review verdict and finding severity"
+  ],
+  "must_escalate": [
+    "requirement conflicts",
+    "acceptance decisions"
+  ],
+  "continuity": {
+    "context_paths": [
+      ".agent-teamworks/work-items/editing-flow.json",
+      ".agent-teamworks/decisions/separate-review-verification.json"
+    ]
+  },
+  "binding": {
+    "generation": 1,
+    "state": "active",
+    "agent_ref": "reviewer-agent-1",
+    "predecessor_agent_ref": null,
+    "bound_at": "2026-09-01T00:10:00Z"
+  }
+}

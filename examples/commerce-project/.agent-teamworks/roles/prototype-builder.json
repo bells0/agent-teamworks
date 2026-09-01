@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.1.0",
+  "role_id": "prototype-builder",
+  "team_id": "commerce-demo-team",
+  "name": "Prototype Builder",
+  "purpose": "Own the interactive catalog editing artifact and its implementation evidence.",
+  "status": "active",
+  "owns": [
+    "catalog editor implementation",
+    "builder verification evidence"
+  ],
+  "can_decide": [
+    "implementation details within accepted contracts"
+  ],
+  "must_escalate": [
+    "shared contract changes",
+    "acceptance meaning changes"
+  ],
+  "continuity": {
+    "context_paths": [
+      ".agent-teamworks/work-items/editing-flow.json",
+      ".agent-teamworks/handoffs/builder-succession.json"
+    ]
+  },
+  "binding": {
+    "generation": 2,
+    "state": "active",
+    "agent_ref": "builder-agent-2",
+    "predecessor_agent_ref": "builder-agent-1",
+    "bound_at": "2026-09-01T00:45:00Z"
+  }
+}

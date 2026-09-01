@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/bells0/agent-teamworks/main/schemas/work-item.schema.json",
+  "title": "Agent Teamworks Work Item",
+  "description": "An independently observable outcome routed into a persistent team.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "work_item_id",
+    "team_id",
+    "title",
+    "outcome",
+    "status",
+    "owner_role_id",
+    "supporting_role_ids",
+    "dependencies",
+    "acceptance",
+    "evidence",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "work_item_id": { "$ref": "#/$defs/id" },
+    "team_id": { "$ref": "#/$defs/id" },
+    "title": { "type": "string", "minLength": 1 },
+    "outcome": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": [
+        "backlog",
+        "ready",
+        "in_progress",
+        "review",
+        "verification",
+        "user_acceptance",
+        "blocked",
+        "done",
+        "cancelled"
+      ]
+    },
+    "owner_role_id": { "$ref": "#/$defs/id" },
+    "supporting_role_ids": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/id" },
+      "uniqueItems": true
+    },
+    "dependencies": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/id" },
+      "uniqueItems": true
+    },
+    "acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["engineering", "user"],
+      "properties": {
+        "engineering": {
+          "type": "string",
+          "enum": ["not_required", "pending", "passed", "failed"]
+        },
+        "user": {
+          "type": "string",
+          "enum": ["not_required", "pending", "accepted", "rejected"]
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["claim", "artifact", "result"],
+        "properties": {
+          "claim": { "type": "string", "minLength": 1 },
+          "artifact": { "type": "string", "minLength": 1 },
+          "result": {
+            "type": "string",
+            "enum": ["pass", "fail", "inconclusive"]
+          }
+        }
+      }
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{2,63}$"
+    }
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/bells0/agent-teamworks/main/schemas/role.schema.json",
+  "title": "Agent Teamworks Role",
+  "description": "A persistent responsibility with a replaceable agent binding.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "role_id",
+    "team_id",
+    "name",
+    "purpose",
+    "status",
+    "owns",
+    "can_decide",
+    "must_escalate",
+    "continuity",
+    "binding"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "role_id": { "$ref": "#/$defs/id" },
+    "team_id": { "$ref": "#/$defs/id" },
+    "name": { "type": "string", "minLength": 1 },
+    "purpose": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": ["proposed", "active", "paused", "retired"]
+    },
+    "owns": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "can_decide": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "must_escalate": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "continuity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["context_paths"],
+      "properties": {
+        "context_paths": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    },
+    "binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "generation",
+        "state",
+        "agent_ref",
+        "predecessor_agent_ref",
+        "bound_at"
+      ],
+      "properties": {
+        "generation": { "type": "integer", "minimum": 1 },
+        "state": {
+          "type": "string",
+          "enum": ["pending", "active", "unbound", "retired"]
+        },
+        "agent_ref": {
+          "type": ["string", "null"],
+          "minLength": 1
+        },
+        "predecessor_agent_ref": {
+          "type": ["string", "null"],
+          "minLength": 1
+        },
+        "bound_at": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "status": { "const": "active" } },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "binding": {
+            "properties": {
+              "state": { "const": "active" },
+              "agent_ref": { "type": "string", "minLength": 1 },
+              "bound_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{2,63}$"
+    }
+  }
+}
