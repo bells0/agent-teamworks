@@ -60,3 +60,7 @@ Use them together without duplicating authority:
 - the delivery controller owns the current software outcome and its evidence;
 - project Role and Work Item records point to delivery artifacts rather than copying them;
 - repository merge still requires explicit authorized approval.
+
+## GitHub user-visible text
+
+For multiline pull request descriptions, issue bodies, review bodies, or comments, follow the [GitHub publication integrity protocol](../../protocols/github-publication-integrity.md). Prepare the exact Markdown in a real file or standard input, publish it once, then read the stored text back through the GitHub API. Repair malformed content in the original record; never hide a failed publication by posting a duplicate.

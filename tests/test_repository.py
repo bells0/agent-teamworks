@@ -204,6 +204,46 @@ class RepositoryValidation(unittest.TestCase):
         self.assertIn("$agent-teamworks", interface["default_prompt"])
         self.assertLessEqual(len(interface["short_description"]), 64)
 
+    def test_github_publication_integrity_contract_is_routed(self) -> None:
+        protocol = (
+            ROOT / "protocols" / "github-publication-integrity.md"
+        ).read_text(encoding="utf-8").lower()
+        required_protocol_terms = [
+            "pull request descriptions",
+            "issue bodies",
+            "review bodies",
+            "comments",
+            "real utf-8 file",
+            "standard input",
+            "--body-file",
+            "literal `\\n`",
+            "literal `\\t`",
+            "heading levels",
+            "list indentation",
+            "blank lines",
+            "link labels and targets",
+            "read the stored title and body back",
+            "github api",
+            "repair in place",
+            "do not compensate by posting another",
+        ]
+        self.assertEqual(
+            [],
+            [term for term in required_protocol_terms if term not in protocol],
+        )
+
+        route_targets = [
+            ROOT / "CONTRIBUTING.md",
+            ROOT / "adapters" / "codex" / "README.md",
+            ROOT / "skills" / "agent-teamworks" / "SKILL.md",
+        ]
+        for path in route_targets:
+            with self.subTest(path=str(path.relative_to(ROOT))):
+                self.assertIn(
+                    "github-publication-integrity.md",
+                    path.read_text(encoding="utf-8"),
+                )
+
     def test_public_example_contains_no_private_project_markers(self) -> None:
         forbidden = [
             "/users/",
