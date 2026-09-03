@@ -31,6 +31,10 @@ Read the [handoff protocol](../../protocols/handoff.md) before replacing an agen
 
 Stop duplicate active owners. If a predecessor disappears, reconstruct only from durable evidence and label unknowns.
 
+## Publish GitHub text safely
+
+Read the [GitHub publication integrity protocol](../../protocols/github-publication-integrity.md) before creating or updating a multiline pull request description, issue body, review body, or comment. Use a real file or standard input, verify Markdown structure before publication, read the stored body back through the GitHub API, and repair the original record instead of posting a duplicate.
+
 ## Close outcomes and teams
 
 Read [review and acceptance](../../protocols/review-and-acceptance.md) when an outcome needs product experience acceptance, independent technical review, delivery review, or merge. Preserve the sequence: runnable candidate and implementer self-check; product acceptance when required; final technical `PASS` or `NEEDS_FIX`; delivery `MERGE_READY` or `NEEDS_FIX`; merge authorization under project rules; permitted merge.

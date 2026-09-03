@@ -20,10 +20,11 @@ Small corrections may go directly to a pull request. Consequential changes to ro
 2. Keep each commit independently understandable and limited to one accepted outcome.
 3. Update schemas, examples, protocols, Skill routing, and evaluations together when a semantic change affects them.
 4. Run the repository validation.
-5. Open a pull request with scope, evidence, compatibility impact, and unresolved questions.
-6. Obtain independent maintainer review and required checks.
-7. Merge only with explicit maintainer authorization.
-8. Delete the merged feature branch when no unmerged work or dependency remains.
+5. Follow the [GitHub publication integrity protocol](protocols/github-publication-integrity.md) for every multiline pull request, issue, review, or comment body.
+6. Open a pull request with scope, evidence, compatibility impact, and unresolved questions.
+7. Obtain independent maintainer review and required checks.
+8. Merge only with explicit maintainer authorization.
+9. Delete the merged feature branch when no unmerged work or dependency remains.
 
 Do not push implementation directly to the default branch. Do not rewrite shared history or force-push without explicit maintainer authorization.
 
