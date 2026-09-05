@@ -18,6 +18,7 @@ A handoff protects continuity when ownership moves between roles or when a new a
 6. Decisions already made and decisions still required.
 7. Mutable state or files owned at the transition.
 8. Destination acknowledgement and completion time.
+9. Pending reports, their delivery/integration status, and the [continuation route](communication.md) that the successor must maintain. Preserve the coordinator return address and reconcile delayed messages from the predecessor.
 
 ## Succession sequence
 

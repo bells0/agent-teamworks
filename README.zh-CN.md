@@ -49,7 +49,8 @@ flowchart TD
 2. 使用[团队组建协议](protocols/team-formation.md)判断项目是否确实需要多智能体团队，并建立最小可用角色体系。
 3. 根据项目 [Schema](schemas/) 把团队状态保存在 `.agent-teamworks/` 目录中。
 4. 每次收到新任务时遵循[工作路由协议](protocols/work-routing.md)；更换 agent 绑定时遵循[交接协议](protocols/handoff.md)。
-5. 始终把[产品体验验收、技术评审、交付就绪和合并授权](protocols/review-and-acceptance.md)作为四个独立状态管理。
+5. 配置[通信与续跑协议](protocols/communication.md)：明确回传地址、接收方式、恢复责任人，以及结果到达后由协调者整合并派发下一步。参见[虚构通信示例](examples/communication-walkthrough.md)。
+6. 始终把[产品体验验收、技术评审、交付就绪和合并授权](protocols/review-and-acceptance.md)作为四个独立状态管理。
 
 [虚构电商项目示例](examples/commerce-project/)展示了一个五角色团队、基于依赖关系的工作路由、尚未完成的产品体验验收，以及在不改变逻辑角色的情况下完成 agent 接续。示例不包含任何真实项目状态。
 

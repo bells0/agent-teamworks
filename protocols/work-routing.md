@@ -30,6 +30,10 @@ backlog -> ready -> in_progress -> product_acceptance
 
 `blocked` may be entered from any active state. `cancelled` preserves abandoned work without erasing history. A gate may be `not_required` when it does not apply, but product acceptance, technical review, delivery readiness, and merge authorization remain separate recorded states. A work item becomes `done` only when every applicable gate and the in-scope merge are complete.
 
+## Communication and continuation
+
+Before dispatch, establish the return route, continuation mode, and recovery owner using the [communication protocol](communication.md). After a result arrives, integrate it and route ready dependent work, or record a specific blocked or paused disposition. Local task completion alone does not perform these steps.
+
 ## Coordinator return contract
 
 Every role returns:

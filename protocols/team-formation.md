@@ -27,7 +27,8 @@ Use this protocol when starting a long-running project or when an existing singl
 - one Role record per roster entry;
 - any accepted formation Decisions;
 - an initial set of ready or blocked Work Items;
-- a concise user-facing summary of who owns what and where approval remains required.
+- a concise user-facing summary of who owns what and where approval remains required;
+- a [communication route](communication.md) appropriate to the runtime: resolved coordinator reference, return mechanism, and recovery owner. Pending creation is not an active binding.
 
 ## Roster changes
 
