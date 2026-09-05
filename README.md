@@ -49,7 +49,8 @@ The coordinator is the primary integration point and usually the user's main int
 2. Use the [formation protocol](protocols/team-formation.md) to decide whether a team is justified and create the smallest useful roster.
 3. Store project state under `.agent-teamworks/` using the [schemas](schemas/).
 4. Follow [work routing](protocols/work-routing.md) for each new request and [handoff](protocols/handoff.md) whenever an agent binding changes.
-5. Keep [product experience acceptance, technical review, delivery readiness, and merge authorization](protocols/review-and-acceptance.md) as separate states.
+5. Establish [communication and continuation](protocols/communication.md): a resolved return route, recovery owner, and coordinator action after every substantive result. See the [fictional walkthrough](examples/communication-walkthrough.md).
+6. Keep [product experience acceptance, technical review, delivery readiness, and merge authorization](protocols/review-and-acceptance.md) as separate states.
 
 The [fictional commerce example](examples/commerce-project/) demonstrates a five-role team, dependency-based routing, pending product experience acceptance, and agent succession without exposing any real project state.
 

@@ -71,6 +71,8 @@ Create a new role only when repeated or upcoming work reveals a durable responsi
 
 The coordinator maintains the integrated view. Roles own bounded outcomes, preserve shared state, and return concise status and evidence. A role report is input to integration, not proof that the project is complete.
 
+Before dispatching independent runtimes, establish [communication and continuation](../protocols/communication.md). The coordinator owns receipt, integration, and the next routing action as well as the work graph. It must not end a turn with outstanding work and no supported continuation route or explicit continuity limitation.
+
 ### 6. Accept, review, and authorize delivery
 
 For a user-visible outcome, the user or designated acceptance owner first decides whether the runnable candidate satisfies product direction, business semantics, information hierarchy, workflow, and real use. A product review advisor may advise but does not own that decision.

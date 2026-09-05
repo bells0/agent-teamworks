@@ -19,11 +19,13 @@ Do not form a team for a single clear edit or unresolved work that cannot yet be
 
 ## Route each request
 
-Read the [work-routing protocol](../../protocols/work-routing.md). Decompose new work by observable outcome, dependencies, shared interfaces, mutable ownership, evidence, and acceptance. Route it to existing roles before considering roster growth.
+Read the [work-routing protocol](../../protocols/work-routing.md) and [communication protocol](../../protocols/communication.md) before dispatch. For Codex, use the [adapter](../../adapters/codex/README.md) and its [dispatch template](../../adapters/codex/dispatch-template.md). Resolve the coordinator address, return mechanism, and recovery owner; honor requested task visibility. Pending runtime creation is not an active binding. Decompose new work by observable outcome, dependencies, shared interfaces, mutable ownership, evidence, and acceptance. Route it to existing roles before considering roster growth.
 
 Create a new role only for a responsibility that will persist beyond one work item. A role is not an agent count, and an agent task is not the role's durable identity.
 
 Keep the coordinator as the integrated user-facing surface. Require role outputs to return state, artifact, evidence, concerns, and a next action. Do not infer project completion from an idle or completed child task.
+
+A role-local final reply is not delivered unless the selected return route retrieves it. Workers explicitly notify the coordinator when that mode is selected. On receipt, integrate the report and dispatch ready dependent work or record its blocker and owner. Before ending a coordinator turn, retain a supported continuation route or disclose the continuity limitation. Deduplicate repeated reports and avoid ACK loops; communication never grants additional authority.
 
 ## Preserve continuity
 
