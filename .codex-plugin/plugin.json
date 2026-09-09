@@ -1,0 +1,27 @@
+{
+  "name": "agent-teamworks",
+  "version": "0.3.0",
+  "description": "Build a persistent project team in Codex with clear roles, communication, and handoffs.",
+  "author": {
+    "name": "bells0",
+    "url": "https://github.com/bells0"
+  },
+  "repository": "https://github.com/bells0/agent-teamworks",
+  "homepage": "https://github.com/bells0/agent-teamworks",
+  "license": "MIT",
+  "keywords": ["team-formation", "multi-agent", "coordination", "handoff"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Agent Teamworks",
+    "shortDescription": "Build a project team with durable roles and clear ownership.",
+    "longDescription": "Use when you need to build a team for a project. Establish the smallest useful roster, bind available agents, set up communication, and save team records in the project. Return when the team needs adjustment or handoff; everyday work continues through its coordinator.",
+    "developerName": "bells0",
+    "category": "Productivity",
+    "capabilities": ["Write"],
+    "defaultPrompt": [
+      "为这个项目构建一个 Agent 团队，明确角色、职责和协作方式。",
+      "调整这个项目现有的 Agent 团队，保留历史和未完成事项。",
+      "为现有团队完成 Agent 交接，恢复未完成的工作。"
+    ]
+  }
+}

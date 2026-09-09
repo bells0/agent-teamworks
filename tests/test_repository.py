@@ -218,6 +218,8 @@ class RepositoryValidation(unittest.TestCase):
         failures: list[str] = []
 
         for markdown in ROOT.rglob("*.md"):
+            if any(part in {".git", ".venv", "dist"} for part in markdown.relative_to(ROOT).parts):
+                continue
             text = markdown.read_text(encoding="utf-8")
             for target in link_pattern.findall(text):
                 target = target.strip().strip("<>")

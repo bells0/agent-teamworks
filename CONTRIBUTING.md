@@ -2,6 +2,8 @@
 
 Agent Teamworks should evolve from observed project needs and reproducible collaboration failures, not from speculative process expansion.
 
+This repository is the source of the Codex plugin. Its primary entry is an explicit request to build a project team; roster adjustment and role handoff/restoration are supporting operations. Preserve this boundary when changing discovery descriptions or protocols. See the [plugin decision](docs/decisions/0001-codex-team-formation-plugin.md).
+
 ## Propose a change
 
 For a semantic change, describe:
@@ -42,9 +44,27 @@ When changing the Skill, also run the Codex bundled Skill validator when availab
 python3 /path/to/skill-creator/scripts/quick_validate.py skills/agent-teamworks
 ```
 
+For manifest changes, also use the Codex bundled plugin validator when available:
+
+```bash
+python3 /path/to/plugin-creator/scripts/validate_plugin.py .
+```
+
+Build the installable marketplace using Python 3.10 or newer (no build dependencies):
+
+```bash
+python3 scripts/build_plugin.py
+```
+
+The generated `dist/` contains `.agents/plugins/marketplace.json` and `plugins/agent-teamworks/`. It is ignored by Git. Edit the root sources, never the generated copy. For subsequent builds, use `--output dist/<new-build-name>` with a fresh directory. The build refuses to overwrite an existing directory.
+
+Repository validation includes building a temporary distribution and resolving links inside the packaged plugin. It does not install the plugin into a personal Codex profile or execute live team-formation scenarios. Keep static package checks, host installation, and behavioral evaluation distinct in delivery notes.
+
 ## Compatibility
 
 The `schema_version` field tracks record compatibility. Backward-incompatible record changes require a migration note and a version change. Keep proposed values out of current-truth examples.
+
+The plugin manifest version tracks plugin releases separately. Packaging version `0.3.0` keeps all existing record schema versions. Include the bundled resources whenever publishing the plugin; distributing only the Skill directory breaks its relative references.
 
 ## Public-data boundary
 

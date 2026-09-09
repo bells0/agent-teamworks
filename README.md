@@ -2,82 +2,89 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-> Persistent roles. Shared context. One outcome.
+> Build the team once. Keep roles, context, and obligations connected.
 
-Agent Teamworks is an open-source operating system for persistent multi-agent teams working on real projects.
+Agent Teamworks is a **Codex plugin for building project teams**. Ask it to form a team when a project needs durable responsibilities and coordinated work. It establishes the smallest useful roster, clear ownership, runtime bindings, communication, and project-local continuity records.
 
-It keeps the **team stable while the work changes**: a project establishes durable roles once, decomposes each new request according to its actual outcomes and dependencies, and routes that work into the existing team. A concrete agent can be replaced; its logical role, responsibility, history, and open obligations continue through a formal handoff.
+After formation, work goes through the established coordinator. Ordinary feature requests do not rerun team formation. Return to the plugin when the team needs an explicit roster adjustment or role handoff/restoration.
 
-## Why it exists
+## Install once
 
-Most multi-agent patterns optimize one prompt: split a task, run several agents, collect answers, and discard the group. That is useful for short parallel work, but weak for a project that evolves over weeks or months.
+Requirements: Python 3.10+ to build the distribution, and a Codex version with `codex plugin` support. Python dependencies are only needed for development validation, not for building or using the plugin.
 
-Agent Teamworks adds the missing project layer:
+From this repository checkout:
 
-| Short-lived delegation | Agent Teamworks |
-|---|---|
-| Agents are created around one request | A team is formed around a project mission |
-| Identity disappears after the task | Logical roles persist across work items |
-| Context lives mainly in chat history | Team state, decisions, and handoffs are durable records |
-| Work is split to maximize parallelism | Work is split by outcome, dependency, ownership, and evidence |
-| Agent completion may look like project completion | Product acceptance, technical review, delivery readiness, and merge authorization stay distinct |
-
-## How it works
-
-```mermaid
-flowchart TD
-    M[Project mission] --> T[Form the smallest stable team]
-    T --> R[Persistent role roster]
-    N[New request] --> D[Decompose by outcome and dependency]
-    D --> R
-    R --> C[Coordinator integrates role outputs]
-    C --> S[Implementer self-check]
-    S --> A[Product experience acceptance when required]
-    A --> V[Independent technical review on final candidate]
-    V --> G[Delivery readiness]
-    G --> U[Merge authorization]
-    U -->|next request| N
-    R -->|agent changes| H[Formal handoff]
-    H --> R
+```bash
+python3 scripts/build_plugin.py
+codex plugin marketplace add ./dist
+codex plugin add agent-teamworks@agent-teamworks
 ```
 
-The coordinator is the primary integration point and usually the user's main interface. It maintains the work graph and routes outcomes to persistent roles. Roles keep bounded ownership and return evidence; they do not become disconnected mini-projects.
+The first command builds a complete local marketplace. The next two register that marketplace and install the plugin in your Codex profile. Start a new Codex task in the project that needs a team after installation so its Skills can be discovered. The source repository path is not needed in everyday prompts.
 
-## Start here
+The builder creates a fresh `dist/` and refuses to overwrite existing output. For another build, choose a fresh directory with `--output dist/<build-name>`. The root sources remain canonical; generated distributions are not a second maintained plugin.
 
-1. Read the [operating model](framework/operating-model.md).
-2. Use the [formation protocol](protocols/team-formation.md) to decide whether a team is justified and create the smallest useful roster.
-3. Store project state under `.agent-teamworks/` using the [schemas](schemas/).
-4. Follow [work routing](protocols/work-routing.md) for each new request and [handoff](protocols/handoff.md) whenever an agent binding changes.
-5. Establish [communication and continuation](protocols/communication.md): a resolved return route, recovery owner, and coordinator action after every substantive result. See the [fictional walkthrough](examples/communication-walkthrough.md).
-6. Keep [product experience acceptance, technical review, delivery readiness, and merge authorization](protocols/review-and-acceptance.md) as separate states.
+The distribution contains the manifest, Skill, protocols, schemas, adapter, and referenced documentation. Copying only `skills/agent-teamworks/` is not a complete plugin installation. Building alone does not install the plugin or alter Codex configuration.
 
-The [fictional commerce example](examples/commerce-project/) demonstrates a five-role team, dependency-based routing, pending product experience acceptance, and agent succession without exposing any real project state.
+## Use when you need a team
 
-## Project structure
+In your target project, select Agent Teamworks and ask:
+
+> Build an Agent team for this project. Establish the smallest useful roster, clear responsibilities, communication, and continuity records.
+
+The Skill can also be discovered from an explicit natural-language team-building request, or invoked as `$agent-teamworks` where the host exposes that name. You do not need to specify the plugin checkout path.
+
+| Stage | What you ask | What the plugin or team does |
+| --- | --- | --- |
+| Build | “Build a team for this project.” | Read project context, reuse any existing team, establish roles, bind supported runtimes, and set up communication. |
+| Work | “Implement this feature.” | The established coordinator routes the outcome to existing roles; formation does not run again. |
+| Adjust | “Adjust the team's responsibilities for the new scope.” | Reconcile current roles and record only the required ownership changes. |
+| Hand off or restore | “Replace this role's Agent and continue its open work.” | Preserve the logical role, decisions, history, and outstanding obligations through a handoff. |
+
+Formation produces a team summary with responsibilities, actual runtime readiness, the coordinator entry, communication route, open decisions, and links to records. A roster with unavailable or pending runtimes is reported as a draft, not a running team. Creating a team does not automatically release every implementation item.
+
+## Where the team lives
+
+The plugin's rules are bundled with the installation. Mutable team state belongs to the project being served:
+
+```text
+your-project/
+├── AGENTS.md                 # Small continuation entry; existing instructions preserved
+└── .agent-teamworks/
+    ├── team.json
+    ├── roles/
+    ├── work-items/
+    ├── decisions/
+    └── handoffs/
+```
+
+Records are created as needed. The continuation entry points to project records, not a machine-specific plugin path. A new conversation reads the existing role bindings before taking ownership; it does not create another coordinator merely because a new task opened.
+
+The coordinator integrates role outputs and preserves their evidence. Product experience acceptance, independent technical review, delivery readiness, and merge authorization remain separate. Installing the plugin grants no publication, spending, or merge authority.
+
+## Plugin source
 
 ```text
 agent-teamworks/
-├── framework/          # Operating model and lifecycle
-├── roles/              # Reusable role-contract guidance
-├── protocols/          # Formation, routing, handoff, acceptance, escalation
-├── schemas/            # Team, Role, Work Item, Handoff, Decision
-├── adapters/codex/     # Runtime mapping for Codex
-├── skills/             # Thin Skill entry points
-├── examples/           # Sanitized project instances
-├── evals/              # Behavioral forward-evaluation cases
-└── tests/              # Schema and consistency checks
+├── .codex-plugin/plugin.json # Codex plugin identity and discovery metadata
+├── skills/agent-teamworks/   # Team-building, adjustment, and handoff entry
+├── framework/                # Canonical operating model
+├── protocols/                # Formation, routing, communication, and acceptance
+├── schemas/                  # Team, Role, Work Item, Handoff, Decision
+├── adapters/codex/           # Runtime mapping and project continuation template
+├── roles/                    # Role-contract guidance
+├── examples/                 # Fictional adoption records
+├── docs/                     # Decisions, compatibility notes, historical specs
+├── evals/                    # Behavioral evaluation cases
+├── scripts/                  # Package builder and repository validator
+└── tests/                    # Distribution, record, and reference checks
 ```
 
-The framework is the source of truth. Skills and runtime adapters are deliberately thin so the collaboration method can evolve without being trapped in one platform.
+The [operating model](framework/operating-model.md), [formation protocol](protocols/team-formation.md), [communication protocol](protocols/communication.md), and [Codex adapter](adapters/codex/README.md) define how teams are built and continue working. The [fictional commerce example](examples/commerce-project/) illustrates records; its five-role roster is not a required team size. The [communication walkthrough](examples/communication-walkthrough.md) illustrates a return route, not a runtime execution log.
 
-## Codex Skill
+Agent Teamworks can work with an available software-delivery workflow. It owns team construction, role continuity, and routing; that workflow handles implementation and delivery for a particular outcome. No separate delivery plugin is required to build a team.
 
-The repository includes a discoverable Skill at [`skills/agent-teamworks`](skills/agent-teamworks/). Keep the full repository checkout available when installing the Skill because its entry point links back to the framework and protocols.
-
-Agent Teamworks complements software-delivery workflows such as `agentic-orchestrate-delivery`: Agent Teamworks owns persistent team formation and continuity; a delivery workflow owns the Spec, Plan, implementation, review, verification, and Git path for a particular software outcome.
-
-## Validate
+## Validate and contribute
 
 ```bash
 python3 -m venv .venv
@@ -85,15 +92,11 @@ python3 -m venv .venv
 .venv/bin/python scripts/validate.py
 ```
 
-The checks validate all schemas, example records, cross-record references, work dependencies, succession continuity, public-example safety markers, Skill metadata, and local documentation links.
+Validation checks schemas, example records, cross-record references, dependencies, handoffs, Skill metadata, and source links. It also builds a fresh marketplace and checks links inside the copied plugin. Static checks do not certify live team formation, task messaging, or unattended continuation; those require the [behavioral scenarios](evals/scenarios.md).
 
-## Status
+Plugin `0.3.0` introduces the [team-formation plugin packaging decision](docs/decisions/0001-codex-team-formation-plugin.md). [Work Item Schema `0.2.0`](docs/migrations/work-item-0.2.0.md) and other record schemas at `0.1.0` remain compatible. The plugin uses Codex's available execution capabilities; it includes no hosted runtime, dashboard, hooks, MCP server, or background scheduler.
 
-V0.2 extends the foundation with separate product experience acceptance, technical review, delivery readiness, and merge authorization gates. [Work Item Schema `0.2.0`](docs/migrations/work-item-0.2.0.md) records those states explicitly; unchanged record schemas retain their own `0.1.0` versions. Agent Teamworks intentionally does not include a hosted runtime, dashboard, or complex CLI. Those should emerge only after repeated project use demonstrates a concrete need.
-
-## Contributing
-
-Changes follow branch → pull request → review → explicit merge so the method's evolution remains traceable. See [CONTRIBUTING.md](CONTRIBUTING.md).
+Changes follow branch → pull request → independent review → authorized merge. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 

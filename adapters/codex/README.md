@@ -2,6 +2,10 @@
 
 This adapter maps Agent Teamworks concepts onto Codex without making Codex task IDs the source of project truth.
 
+## Plugin entry
+
+The installable plugin exposes the `agent-teamworks` Skill for requests to build a project team, adjust its roster, or hand off and restore roles. Ordinary work proceeds through the established coordinator without invoking formation again. Load all framework, protocol, and schema references from the installed plugin; the user does not need the source repository path.
+
 ## Runtime mapping
 
 | Agent Teamworks | Codex mapping |
@@ -24,6 +28,16 @@ Prefer one visible coordinator task as the user's main interaction surface. A pe
 5. Record the binding reference and generation in the Role record.
 
 Do not create Codex tasks, subagents, or other external state unless the user request and host authorization allow it. When multi-agent execution is unavailable, the same records may guide sequential role execution by one agent.
+
+## Project continuation entry
+
+As part of an authorized team setup, add a short, project-scoped section to the target project's `AGENTS.md`, preserving all existing instructions. Check for an equivalent section first and update it in place when needed. Do not edit parent-directory instructions or global configuration.
+
+Use [project-team-entry.md](project-team-entry.md) as the starting point. This entry directs later conversations to the project's actual team records, not to an absolute plugin cache or source-checkout path. Record the coordinator's real binding and communication route in those records, not in a copied fixed task ID in `AGENTS.md`.
+
+The section should apply only to work assigned to this team. It must not turn unrelated questions into team operations, create duplicate coordinators, or authorize new runtimes merely because a new conversation opened. A new conversation can inspect continuity records; becoming a replacement owner requires reconciling the existing binding and completing the relevant handoff.
+
+Keep existing projects' record versions. Installing or updating the plugin alone does not migrate, activate, or overwrite a team's state.
 
 ## Runtime readiness
 

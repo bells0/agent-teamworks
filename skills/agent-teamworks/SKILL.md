@@ -1,11 +1,21 @@
 ---
 name: agent-teamworks
-description: Form and operate a persistent multi-agent team for a long-running project, keeping logical roles stable while decomposing new work by outcome and dependency. Use when the user requests a project team or recurring cross-role collaboration; exclude one-off tasks and simple parallel delegation.
+description: Build a persistent multi-agent team when the user asks to form a project team (构建团队、组建团队). Also use for an explicit request to adjust that team or hand off and restore its roles. Ordinary feature work, debugging, status questions, and one-off parallel tasks do not trigger team formation.
 ---
 
 # Agent Teamworks
 
-Treat the team as durable project infrastructure, not a temporary group created for one prompt.
+The primary outcome is a project team ready to work: a minimal roster, clear ownership, real runtime bindings where available, a return route, and durable project records.
+
+## Choose the requested operation
+
+- **Build a team:** read existing project records first, then establish the mission and missing team structure. Repeated requests reuse the existing team instead of creating another roster.
+- **Adjust a team:** read its current roles, decisions, and open work; change only the requested responsibilities and record any ownership transfer.
+- **Hand off or restore:** recover the existing logical roles and obligations using the handoff protocol. Do not rebuild from chat memory.
+
+Installing or selecting the plugin alone does not authorize creating a team. Follow the user's actual request. A normal feature request goes through an established coordinator; it does not rerun formation or grow the roster automatically.
+
+All links below resolve relative to this installed Skill inside the plugin. Keep the plugin package read-only. Write team records into the user's target project, never into the plugin, its examples, or a personal global configuration directory. Do not ask the user for the plugin source checkout path.
 
 ## Establish project truth
 
@@ -13,11 +23,18 @@ Treat the team as durable project infrastructure, not a temporary group created 
 2. For a new team, read the [operating model](../../framework/operating-model.md) and [formation protocol](../../protocols/team-formation.md).
 3. Define the mission, non-goals, observable success, authority boundary, and acceptance owner.
 4. Form the smallest stable roster justified by durable responsibilities. Keep one coordinator and one active binding per role.
-5. Store the Team, Role, Work Item, Handoff, and Decision records using the project [schemas](../../schemas/).
+5. Store the Team, Role, Work Item, Handoff, and Decision records using the bundled [schemas](../../schemas/) in the target project's `.agent-teamworks/` directory. Create records as needed; never copy fictional identities or acceptance results into a live project.
+6. Follow the [Codex adapter](../../adapters/codex/README.md) to bind runtimes and install the minimal project continuation entry. Use the scope and authorization already given; ask only for missing decisions that materially affect the team or its authority.
 
 Do not form a team for a single clear edit or unresolved work that cannot yet be decomposed safely.
 
-## Route each request
+## Make the team ready for everyday work
+
+Before reporting formation complete, return the roster and owned boundaries, actual runtime readiness, the coordinator entry, the communication route, open decisions, and links to the project records. A saved roster with unavailable or pending runtimes is a formation draft, not a running team. Building the team does not by itself authorize starting every implementation item.
+
+The following operating rules are for the established coordinator. Daily work uses the existing team and records without requiring the user to invoke formation again.
+
+## Route work within the established team
 
 Read the [work-routing protocol](../../protocols/work-routing.md) and [communication protocol](../../protocols/communication.md) before dispatch. For Codex, use the [adapter](../../adapters/codex/README.md) and its [dispatch template](../../adapters/codex/dispatch-template.md). Resolve the coordinator address, return mechanism, and recovery owner; honor requested task visibility. Pending runtime creation is not an active binding. Decompose new work by observable outcome, dependencies, shared interfaces, mutable ownership, evidence, and acceptance. Route it to existing roles before considering roster growth.
 
