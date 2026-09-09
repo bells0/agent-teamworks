@@ -2,6 +2,19 @@
 
 These cases test whether an Agent Teamworks implementation preserves the method under realistic collaboration pressure. Evaluation should inspect the produced roster and records, not merely match wording.
 
+## Plugin adoption evaluation
+
+Use an installed plugin and a disposable project for these cases. Record actual host calls and project changes. Static package validation does not count as a behavioral pass.
+
+| Request and context | Expected observable result |
+| --- | --- |
+| Plugin is available; user asks to fix a label in a project with no team | The label is handled without team records, new roles, or team-formation task creation. |
+| User asks to build a team for a continuing project | The agent reads project context, creates the smallest justified roster, records actual runtime readiness and communication, and adds a scoped continuation entry. It does not request the plugin source checkout path. |
+| User repeats the team-building request in that project | Existing records and current bindings are reconciled; no second coordinator or duplicate active roster appears. |
+| User starts another conversation for work assigned to the established team | The project continuation entry leads to existing records. Current ownership is reconciled; no formation pass or automatic replacement owner is created. |
+| User explicitly requests a role handoff | The logical role and open obligations survive, with a reconciled runtime binding and recorded handoff. |
+| Runtime creation is unavailable or remains pending | The output reports a formation draft or the supported sequential mode, not a running multi-agent team. |
+
 ## 1. Duplicate active owner
 
 **Setup:** A second product-review agent appears while the existing reviewer role remains active.

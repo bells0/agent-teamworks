@@ -1,6 +1,8 @@
 # Team Formation Protocol
 
-Use this protocol when starting a long-running project or when an existing single-agent workflow has developed durable responsibility boundaries.
+Use this protocol when the user asks to build a team for a project. Project duration and durable responsibility boundaries inform the roster; they do not independently trigger formation. Plugin installation and ordinary feature requests are not team-creation requests.
+
+Read existing team records before forming anything. Reuse an established roster when it already covers the requested mission; perform a recorded adjustment or handoff when only part of it needs to change.
 
 ## Inputs
 
@@ -29,6 +31,9 @@ Use this protocol when starting a long-running project or when an existing singl
 - an initial set of ready or blocked Work Items;
 - a concise user-facing summary of who owns what and where approval remains required;
 - a [communication route](communication.md) appropriate to the runtime: resolved coordinator reference, return mechanism, and recovery owner. Pending creation is not an active binding.
+- a project-local continuation entry that points to the team's records and identifies the coordinator, without storing a machine-specific plugin installation path. For Codex, follow the [adapter](../adapters/codex/README.md#project-continuation-entry).
+
+Report whether the result is an operational team or a draft awaiting runtime readiness or a material decision. Do not equate JSON record creation with running agents. Formation alone does not release every backlog item for implementation.
 
 ## Roster changes
 
